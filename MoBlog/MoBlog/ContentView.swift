@@ -9,13 +9,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection = 2
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            
+            TabView(selection: $selection) {
+                ExploreView()
+                    .tabItem {
+                        Image(systemName: "map.fill")
+                        Text("Explore")
+                    }
+                    .tag(1)
+                    
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Home")
+                    }
+                    .tag(2)
+                        
+                SettingsView()
+                    .tabItem {
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                    .tag(3)
+            }
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+       ContentView()
+        .environment(\.colorScheme, .dark)
     }
 }
