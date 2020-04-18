@@ -22,6 +22,9 @@
 		C3A7123C244A6DC5005BA03F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7123B244A6DC5005BA03F /* Section.swift */; };
 		C3A7123D244A6DC5005BA03F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7123B244A6DC5005BA03F /* Section.swift */; };
 		C3A7123E244A6DC5005BA03F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7123B244A6DC5005BA03F /* Section.swift */; };
+		C3A71240244B1665005BA03F /* HomePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7123F244B1665005BA03F /* HomePost.swift */; };
+		C3A71241244B1665005BA03F /* HomePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7123F244B1665005BA03F /* HomePost.swift */; };
+		C3A71242244B1665005BA03F /* HomePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A7123F244B1665005BA03F /* HomePost.swift */; };
 		C3AD4B4B2448D260009C4F87 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD4B4A2448D260009C4F87 /* HomeView.swift */; };
 		C3AD4B4C2448D260009C4F87 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD4B4A2448D260009C4F87 /* HomeView.swift */; };
 		C3AD4B4D2448D260009C4F87 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AD4B4A2448D260009C4F87 /* HomeView.swift */; };
@@ -70,6 +73,7 @@
 		C323CBE12443043A000626C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A71237244A6B24005BA03F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C3A7123B244A6DC5005BA03F /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		C3A7123F244B1665005BA03F /* HomePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePost.swift; sourceTree = "<group>"; };
 		C3AD4B4A2448D260009C4F87 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C3AD4B4F2448D7ED009C4F87 /* PostData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PostData.json; sourceTree = "<group>"; };
 		C3AD4B522448D828009C4F87 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			children = (
 				C3AD4B58244A4595009C4F87 /* ExploreFeaturedPost.swift */,
 				C3A7123B244A6DC5005BA03F /* Section.swift */,
+				C3A7123F244B1665005BA03F /* HomePost.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				C3AD4B59244A4595009C4F87 /* ExploreFeaturedPost.swift in Sources */,
 				C323CBBB24430437000626C5 /* AppDelegate.swift in Sources */,
 				C3A71238244A6B24005BA03F /* SettingsView.swift in Sources */,
+				C3A71240244B1665005BA03F /* HomePost.swift in Sources */,
 				C323CBC024430437000626C5 /* MoBlog.xcdatamodeld in Sources */,
 				C3A7123C244A6DC5005BA03F /* Section.swift in Sources */,
 				C323CBC224430437000626C5 /* ContentView.swift in Sources */,
@@ -354,6 +360,7 @@
 				C3A71239244A6B24005BA03F /* SettingsView.swift in Sources */,
 				C323CBD52443043A000626C5 /* MoBlogTests.swift in Sources */,
 				C3AD4B5A244A4595009C4F87 /* ExploreFeaturedPost.swift in Sources */,
+				C3A71241244B1665005BA03F /* HomePost.swift in Sources */,
 				C3A7123D244A6DC5005BA03F /* Section.swift in Sources */,
 				C3AD4B56244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3AD4B4C2448D260009C4F87 /* HomeView.swift in Sources */,
@@ -367,6 +374,7 @@
 				C3A7123A244A6B24005BA03F /* SettingsView.swift in Sources */,
 				C323CBE02443043A000626C5 /* MoBlogUITests.swift in Sources */,
 				C3AD4B5B244A4595009C4F87 /* ExploreFeaturedPost.swift in Sources */,
+				C3A71242244B1665005BA03F /* HomePost.swift in Sources */,
 				C3A7123E244A6DC5005BA03F /* Section.swift in Sources */,
 				C3AD4B57244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3AD4B4D2448D260009C4F87 /* HomeView.swift in Sources */,

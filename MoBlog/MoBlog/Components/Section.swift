@@ -24,6 +24,7 @@ struct Section<Content: View>: View {
                     .font(.title)
                     .bold()
                     .padding(.bottom, -10)
+                    .padding(.horizontal, 10)
                 
                 Spacer()
             }

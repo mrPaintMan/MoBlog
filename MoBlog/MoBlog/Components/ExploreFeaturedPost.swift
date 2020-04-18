@@ -11,21 +11,16 @@ import SwiftUI
 struct ExploreFeaturedPost: View {
     var text: String
     var body: some View {
-        ZStack {
-
-            Rectangle()
-                .frame(width: 240, height: 160)
-                .overlay(
-                    Text(text)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                )
-                .foregroundColor(Color.blue.opacity(0.8))
-                .cornerRadius(15)
-            
-            
-        }
         
+        Rectangle()
+            .frame(width: 240, height: 160)
+            .overlay(
+                Text(text)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+            )
+            .foregroundColor(Color.blue.opacity(0.8))
+            .cornerRadius(15)
     }
 }
 

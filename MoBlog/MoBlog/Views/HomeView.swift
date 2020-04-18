@@ -24,9 +24,8 @@ struct HomeView: View {
                     .font(.largeTitle)
                 
                 List(PostData) { post in
-                    Text(post.title)
+                    HomePost(post: post)
                 }
-                .frame(height: CGFloat(PostData.count) * 44)
                 
                 Spacer()
             }
@@ -37,5 +36,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environment(\.colorScheme, .dark)
     }
 }
