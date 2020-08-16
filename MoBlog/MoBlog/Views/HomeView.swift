@@ -9,7 +9,11 @@
 import SwiftUI
 
 struct HomeView: View {
-    init(){
+    @State var pageIndex = 0
+    @State var showInternetAlert = false
+    @State var posts = [Post]()
+    
+    init() {
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
     }
@@ -22,13 +26,40 @@ struct HomeView: View {
             VStack {
                 Text("MoBlog")
                     .font(.largeTitle)
+                    
                 
-                List(PostData) { post in
+                List(posts) { post in
                     HomePost(post: post)
+                    .onAppear {
+                        if self.posts.last?.id == post.id {
+                            self.pageIndex += 1
+                            guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: nil).response?.data else {
+                                self.showInternetAlert = true
+                                return
+                            }
+
+                            self.posts += posts
+                            print("fetched \(posts.count) number of posts")
+                            print("posts.count = \(self.posts.count) number of posts")
+                        }
+                    }
                 }
-                
-                Spacer()
+                .animation(nil)
             }
+        }
+        .onAppear {
+            if self.posts.isEmpty {
+                guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: nil).response?.data else {
+                    self.showInternetAlert = true
+                           return
+                       }
+                       
+                    self.posts = posts
+                    print("fetched \(posts.count) number of posts")
+            }
+        }
+        .alert(isPresented: $showInternetAlert) {
+            Alert(title: Text("Something went wrong..."), message: Text("Something went wrong when talking to the MoBlog servers. Make sure you have a stable internet connection."), dismissButton: nil)
         }
     }
 }

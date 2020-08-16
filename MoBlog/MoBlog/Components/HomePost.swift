@@ -34,26 +34,31 @@ struct HomePost: View {
             .foregroundColor(.clear)
             .background(LinearGradient(gradient: Gradient(colors: [color.opacity(0.5), color]), startPoint: .topLeading, endPoint: .bottomTrailing))
             .cornerRadius(20)
-            //.shadow(color: Color.init(.systemGray4),radius: 10, x: 0, y: 10)
             .overlay(
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(post.source)
-                            .font(.system(size: 25))
-                            .bold()
-                            .padding(30)
-                        
-                        Text(post.title)
-                            .padding(.leading, 30)
-                        
+                VStack() {
+                    HStack {
                         Text(age)
-                            .padding(.leading, 30)
+                            .font(.system(size: 15))
+                            .padding(5)
+                            .padding(.leading, 10)
                         
                         Spacer()
                     }
-                
+                    
                     Spacer()
+                    
+                    Text(post.title)
+                        .font(.system(size: 20))
+                        .bold()
+                        .padding(.horizontal, 20)
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                    
+                    
+                    Tag(label: post.source, color: Color.init(.lightText))
                 }
+                .padding(.vertical, 5)
             )
     }
 }

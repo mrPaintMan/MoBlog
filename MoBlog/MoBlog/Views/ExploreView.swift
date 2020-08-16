@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct ExploreView: View {
-    let featuredData = [PostData[9], PostData[8], PostData[7], PostData[6]]
-    
-    let newData = [PostData[0], PostData[1], PostData[2], PostData[3], PostData[4]]
+    let featuredPosts = [PostData[9], PostData[8], PostData[7], PostData[6]]
+    @State var showInternetAlert = false
+    @State var newPosts = [Post]()
     
     init(){
         UITableView.appearance().backgroundColor = .clear
@@ -34,7 +34,7 @@ struct ExploreView: View {
                 Section(label: "Featured") {
                     ScrollView(.horizontal, showsIndicators: false, content: {
                         HStack(spacing: 10) {
-                            ForEach(self.featuredData) { post in
+                            ForEach(self.featuredPosts) { post in
                                 ExploreFeaturedPost(text: post.title)
                             }
                         }
@@ -47,16 +47,29 @@ struct ExploreView: View {
                 // MARK: New Additions
                 
                 Section(label: "New Additions") {
-                    List(self.newData) { post in
+                    List(self.newPosts) { post in
                         Text(post.title)
                     }
-                    .frame(height: (CGFloat(self.newData.count) * 44))
+                    .frame(height: (CGFloat(self.newPosts.count) * 44))
                 }
                 Divider()
                 
                 
                 Spacer()
             }
+        }
+        .onAppear {
+            if self.newPosts.isEmpty {
+                guard let posts: [Post] = PostRequest(page: 0, sourceCode: nil).response?.data else {
+                    self.showInternetAlert = true
+                    return
+               }
+                   
+                self.newPosts = Array(posts[...3])
+            }
+        }
+        .alert(isPresented: $showInternetAlert) {
+            Alert(title: Text("Something went wrong..."), message: Text("Something went wrong when talking to the MoBlog servers. Make sure you have a stable internet connection."), dismissButton: nil)
         }
         
     }
