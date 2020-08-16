@@ -11,6 +11,8 @@ import SwiftUI
 struct ExploreView: View {
     let featuredPosts = [PostData[9], PostData[8], PostData[7], PostData[6]]
     @State var showInternetAlert = false
+    @State var showWebView = false
+    @State var currentLink = ""
     @State var newPosts = [Post]()
     
     init(){
@@ -36,6 +38,10 @@ struct ExploreView: View {
                         HStack(spacing: 10) {
                             ForEach(self.featuredPosts) { post in
                                 ExploreFeaturedPost(text: post.title)
+                                .onTapGesture {
+                                    self.currentLink = post.link
+                                    self.showWebView = true
+                                }
                             }
                         }
                         .padding(.leading, 10)
@@ -49,15 +55,21 @@ struct ExploreView: View {
                 Section(label: "New Additions") {
                     List(self.newPosts) { post in
                         Text(post.title)
+                        .onTapGesture {
+                            self.currentLink = post.link
+                            self.showWebView = true
+                        }
                     }
                     .frame(height: (CGFloat(self.newPosts.count) * 44))
                 }
                 Divider()
                 
-                
                 Spacer()
             }
         }
+        .sheet(isPresented: $showWebView, content: {
+            WebView(url: self.currentLink)
+        })
         .onAppear {
             if self.newPosts.isEmpty {
                 guard let posts: [Post] = PostRequest(page: 0, sourceCode: nil).response?.data else {

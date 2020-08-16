@@ -11,6 +11,8 @@ import SwiftUI
 struct HomeView: View {
     @State var pageIndex = 0
     @State var showInternetAlert = false
+    @State var showWebView = false
+    @State var currentLink = ""
     @State var posts = [Post]()
     
     init() {
@@ -30,6 +32,10 @@ struct HomeView: View {
                 
                 List(posts) { post in
                     HomePost(post: post)
+                    .onTapGesture {
+                        self.currentLink = post.link
+                        self.showWebView = true
+                    }
                     .onAppear {
                         if self.posts.last?.id == post.id {
                             self.pageIndex += 1
@@ -44,7 +50,9 @@ struct HomeView: View {
                         }
                     }
                 }
-                .animation(nil)
+                .sheet(isPresented: $showWebView, content: {
+                    WebView(url: self.currentLink)
+                })
             }
         }
         .onAppear {

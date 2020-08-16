@@ -12,18 +12,10 @@ struct HomePost: View {
     var age: String
     var post: Post
     var color: Color
-    var colors: [Color] = [
-        Color.init(.systemBlue),
-        Color.init(.systemRed),
-        Color.init(.systemGreen),
-        Color.init(.systemOrange),
-        Color.init(.systemYellow)
-    ]
     
     init(post: Post) {
         let unixAge = NSDate().timeIntervalSince1970 - post.created
-        let i = Int.random(in: 0...4)
-        self.color = self.colors[i]
+        self.color = post.color
         self.post = post
         self.age = "\(Int(unixAge / (24 * 60 * 60))) days old"
     }

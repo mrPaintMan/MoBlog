@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Post: Codable, Identifiable {
     var id: Int
@@ -15,6 +16,8 @@ struct Post: Codable, Identifiable {
     var link: String
     var source: String
     var created: Double
+    
+    var color: Color
     
     enum CodingKeys: String, CodingKey {
         case id = "post_id"
@@ -27,6 +30,14 @@ struct Post: Codable, Identifiable {
     
     
     init(from decoder: Decoder) throws {
+        let colors: [Color] = [
+            Color.init(.systemBlue),
+            Color.init(.systemRed),
+            Color.init(.systemGreen),
+            Color.init(.systemOrange),
+            Color.init(.systemYellow)
+        ]
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int.self, forKey: .id)
         extId = try values.decode(String.self, forKey: .extId)
@@ -34,6 +45,9 @@ struct Post: Codable, Identifiable {
         link = try values.decode(String.self, forKey: .link)
         source = try values.decode(String.self, forKey: .source)
         created = try values.decode(Double.self, forKey: .created)
+        
+        let i = Int.random(in: 0...4)
+        color = colors[i]
     }
 }
 
