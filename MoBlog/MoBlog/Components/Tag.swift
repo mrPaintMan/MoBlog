@@ -17,12 +17,10 @@ struct Tag: View {
             .foregroundColor(textColor)
             .padding(2)
             .padding(.horizontal, 15)
-            .background(color)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.white, lineWidth: 1)
-            )
+            .background(RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.white, lineWidth: 1)
+                .background(color))
+            .cornerRadius(12)
     }
 }
 
