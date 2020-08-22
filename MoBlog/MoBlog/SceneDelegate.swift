@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var postList = PostList()
+    var sourceList = SourceList()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -20,8 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let posts = PostRequest(page: 0, sourceCode: nil).response?.data else {
                return
            }
-           
+        
+        guard let sources = SourceRequest(page: 0).response?.data else {
+               return
+           }
+              
         self.postList.posts = posts
+        self.sourceList.sources = sources
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
@@ -34,6 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contentView = ContentView()
             .environment(\.managedObjectContext, context)
             .environmentObject(postList)
+            .environmentObject(sourceList)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

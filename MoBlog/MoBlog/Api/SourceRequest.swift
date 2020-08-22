@@ -1,36 +1,29 @@
 //
-//  PostRequest.swift
+//  SourceRequest.swift
 //  MoBlog
 //
-//  Created by Filip Palmqvist on 2020-06-28.
+//  Created by Filip Palmqvist on 2020-08-21.
 //  Copyright © 2020 Filip Palmqvist. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 
-struct PostResponse: Decodable {
+struct SourceResponse: Decodable {
     let status: String
-    var data: [Post]
+    var data: [Source]
 }
 
-class PostRequest {
+class SourceRequest {
     let page: Int
-    let sourceCode: String?
     let resource: String
-    var response: PostResponse?
-    
-    init(page: Int, sourceCode: String?) {
+    var response: SourceResponse?
+
+    init(page: Int) {
         self.page = page
-        self.sourceCode = sourceCode
-        self.resource = "posts"
-        var params: String
+        resource = "sources"
         
-        if (sourceCode != nil) {
-            params = "?page=\(page)&source=\(sourceCode!)"
-        } else {
-            params = "?page=\(page)"
-        }
+        let params = "?page=" + String(page)
         let semaphore = DispatchSemaphore(value: 0)
         let moBlogResuest = MoBlogRequest(resource: self.resource, params: params)
         
@@ -41,7 +34,7 @@ class PostRequest {
                 
             case .success(let data):
                 self?.response = parseData(data)
-                let dataWithImages = self?.getImageData(posts: self?.response?.data ?? [Post]()) ?? [Post]()
+                let dataWithImages = self?.getImageData(sources: self?.response?.data ?? [Source]()) ?? [Source]()
                 self?.response?.data = dataWithImages
             }
             
@@ -51,25 +44,25 @@ class PostRequest {
         semaphore.wait()
     }
     
-    func getImageData(posts: [Post]) -> [Post] {
-        posts.forEach { post in
-            guard let url = URL(string: post.imageLink) else { return }
+    func getImageData(sources: [Source]) -> [Source] {
+        sources.forEach { source in
+            guard let url = URL(string: source.profileImageLink) else { return }
             
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else { return }
                 guard let image = UIImage(data: data) else {
-                    print("Could not create image from resource: " + post.imageLink)
+                    print("Could not create image from resource: " + source.profileImageLink)
                     return
                     
                 }
                 
                 DispatchQueue.main.async {
-                    post.image = Image(uiImage: image)
+                    source.profileImage = Image(uiImage: image)
                 }
                 
             }.resume()
         }
         
-        return posts
+        return sources
     }
 }

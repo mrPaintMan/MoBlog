@@ -9,6 +9,8 @@
 import Foundation
 import SwiftUI
 
+let PostData: [Post] = loadLocalData("PostData.json")
+
 class Post: Codable, Identifiable, ObservableObject {
     var id: Int
     var extId: String
@@ -19,7 +21,6 @@ class Post: Codable, Identifiable, ObservableObject {
     var source: String
     var created: Double
     
-    var color: Color
     @Published var image = Image("loading")
     
     enum CodingKeys: String, CodingKey {
@@ -35,14 +36,6 @@ class Post: Codable, Identifiable, ObservableObject {
     
     
     required init(from decoder: Decoder) throws {
-        let colors: [Color] = [
-            Color.init(.systemBlue),
-            Color.init(.systemRed),
-            Color.init(.systemGreen),
-            Color.init(.systemOrange),
-            Color.init(.systemYellow)
-        ]
-        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int.self, forKey: .id)
         extId = try values.decode(String.self, forKey: .extId)
@@ -52,34 +45,5 @@ class Post: Codable, Identifiable, ObservableObject {
         altImageLink = try values.decodeIfPresent(String.self, forKey: .altImageLink)
         source = try values.decode(String.self, forKey: .source)
         created = try values.decode(Double.self, forKey: .created)
-        
-        let i = Int.random(in: 0...4)
-        color = colors[i]
-    }
-}
-
-
-let PostData: [Post] = load("PostData.json")
-
-
-func load<T: Decodable>(_ fileName: String) -> T {
-    let data: Data
-    
-    guard let file = Bundle.main.url(forResource: fileName, withExtension: nil)
-        else {
-            fatalError("Couldn't find \(fileName) in main bundle.")
-    }
-    
-    do {
-        data = try Data(contentsOf: file)
-    } catch {
-        fatalError("Couldn't load \(fileName) from main bundle:\n\(error)")
-    }
-    
-    do {
-        let decoder = JSONDecoder()
-        return try decoder.decode(T.self, from: data)
-    } catch {
-        fatalError("Couldn't parse \(fileName) as \(T.self):\n\(error)")
     }
 }
