@@ -21,7 +21,7 @@ class Post: Codable, Identifiable, ObservableObject {
     var source: String
     var created: Double
     
-    @Published var image = Image("loading")
+    @Published var imageData = Data()
     
     enum CodingKeys: String, CodingKey {
         case id = "post_id"
@@ -45,5 +45,22 @@ class Post: Codable, Identifiable, ObservableObject {
         altImageLink = try values.decodeIfPresent(String.self, forKey: .altImageLink)
         source = try values.decode(String.self, forKey: .source)
         created = try values.decode(Double.self, forKey: .created)
+    }
+    
+    func getImage(size: CGSize) -> Image {
+        if self.imageData.isEmpty {
+            return Image("loading")
+        }
+        
+        else {
+            do {
+                let uiimage = try UIImage().downsample(imageData: self.imageData, to: size, scale: 1)
+                
+                return Image(uiImage: uiimage)
+            }
+            catch {
+                fatalError("Could not downsample image with url: " + self.imageLink)
+            }
+        }
     }
 }

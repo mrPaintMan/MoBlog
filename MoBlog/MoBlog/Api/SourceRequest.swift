@@ -50,14 +50,9 @@ class SourceRequest {
             
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else { return }
-                guard let image = UIImage(data: data) else {
-                    print("Could not create image from resource: " + source.profileImageLink)
-                    return
-                    
-                }
                 
                 DispatchQueue.main.async {
-                    source.profileImage = Image(uiImage: image)
+                    source.profileImageData = data
                 }
                 
             }.resume()

@@ -57,14 +57,9 @@ class PostRequest {
             
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else { return }
-                guard let image = UIImage(data: data) else {
-                    print("Could not create image from resource: " + post.imageLink)
-                    return
-                    
-                }
                 
                 DispatchQueue.main.async {
-                    post.image = Image(uiImage: image)
+                    post.imageData = data
                 }
                 
             }.resume()

@@ -13,6 +13,7 @@ struct HomeView: View {
     @State var pageIndex = 0
     @State var showInternetAlert = false
     @State var showWebView = false
+    @State var showLoadButton = true
     @State var currentLink = ""
     
     init() {
@@ -25,28 +26,29 @@ struct HomeView: View {
             Color.init(.systemGray6)
                 .edgesIgnoringSafeArea(.all)
 
-            VStack {
-                Text("MoBlog")
-                    .font(.largeTitle)
                     
+            ScrollView {
                 
-                List(postList.posts) { post in
-                    HomePost(post: post)
-                    .onTapGesture {
-                        self.currentLink = post.link
-                        self.showWebView = true
-                    }
-                    .onAppear {
-                        if self.postList.posts.last?.id == post.id {
-                            self.pageIndex += 1
-                            guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: nil).response?.data else {
-                                self.showInternetAlert = true
-                                return
-                            }
+                VStack {
 
-                            self.postList.posts += posts
-                            print("posts.count = \(self.postList.posts.count) number of posts")
+                    Text("MoBlog")
+                        .font(.largeTitle)
+
+                    ForEach(postList.posts, content: { post in
+                        HomePost(post: post)
+                            .padding(.horizontal, 5)
+                        .onTapGesture {
+                            self.currentLink = post.link
+                            self.showWebView = true
                         }
+                    })
+                    
+                    if self.showLoadButton {
+                        HomeButton(action: {
+                            self.loadMorePosts()
+                        }, label: "Load more!")
+                            .padding(.bottom, 20)
+                            .padding(.top, 10)
                     }
                 }
                 .sheet(isPresented: $showWebView, content: {
@@ -58,6 +60,24 @@ struct HomeView: View {
             Alert(title: Text("Something went wrong..."), message: Text("Something went wrong when talking to the MoBlog servers. Make sure you have a stable internet connection."), dismissButton: nil)
         }
     }
+    
+    func loadMorePosts() -> Void {
+        self.pageIndex += 1
+        
+        guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: nil).response?.data else {
+            self.showInternetAlert = true
+            return
+        }
+        
+        if posts.isEmpty {
+            self.showLoadButton = false
+        }
+        else {
+            self.postList.posts += posts
+        }
+        
+        print("posts.count = \(self.postList.posts.count) number of posts")
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -66,5 +86,6 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
             .environment(\.colorScheme, .dark)
             .environmentObject(PostList(posts: PostData))
+            .environmentObject(SourceList(sources: SourceData))
     }
 }

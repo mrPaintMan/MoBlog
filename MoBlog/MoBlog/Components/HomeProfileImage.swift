@@ -12,7 +12,7 @@ struct HomeProfileImage: View {
     @ObservedObject var source: Source
     
     var body: some View {
-        source.profileImage
+        self.source.getImage(size: CGSize(width: 50, height: 50))
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 50, height: 50, alignment: .center)
@@ -20,7 +20,8 @@ struct HomeProfileImage: View {
             .clipShape(Circle())
             .overlay(
                 Circle()
-                    .stroke(Color(.white), lineWidth: 2))
+                    .stroke(Color(.white), lineWidth: 1)
+        )
     }
 }
 

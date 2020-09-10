@@ -23,49 +23,60 @@ struct HomePost: View {
         Rectangle()
             .frame(height: 150)
             .foregroundColor(.clear)
-            .background(post.image
-                .resizable()
-                .aspectRatio(contentMode: .fill))
+            .background(
+                GeometryReader { geometry in
+                    self.post.getImage(size: geometry.size)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                }
+            )
             .overlay(
                     
                 Rectangle()
-                    .frame(height: 150)
-                    .foregroundColor(.clear)
-                    .background(
-                        LinearGradient(gradient: Gradient(colors: [Color(.black).opacity(0), Color(.black)]), startPoint: .top, endPoint: .bottom))
-                    .overlay(
-                    
-                        VStack {
-                            
-                            HStack {
+                .foregroundColor(.clear)
+                .background(
+                    VStack {
+                        Spacer()
+                        
+                        LinearGradient(gradient: Gradient(colors: [Color(.black).opacity(0), Color(.black).opacity(0.9)]), startPoint: .top, endPoint: .bottom)
+                            .frame(height: 120)
+                    }
+                )
+                .overlay(
+                
+                    VStack {
+                        
+                        HStack {
 
-                                HomeProfileImage(source: getSource())
-                                
-                                Spacer()
-                            }
+                            HomeProfileImage(source: getSource())
+                                .padding(5)
                             
                             Spacer()
-                            
-                            Text(post.title)
-                                .font(.system(size: 20))
-                                .bold()
-                                .padding(.horizontal, 10)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
-                                
-                            HStack {
-                                
-                                Spacer()
-
-                                Text(age)
-                                    .font(.system(size: 15))
-                                    .padding(5)
-                                    .padding(.leading, 5)
-                                    .foregroundColor(.white)
-                            }
                         }
-                        .padding(5)
-                    )
+                        
+                        Spacer()
+                        
+                        Text(post.title)
+                            .font(.system(size: 20))
+                            .bold()
+                            .padding(.horizontal, 10)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            
+                        HStack {
+                            
+                            Spacer()
+
+                            Text(age)
+                                .font(.system(size: 15))
+                                .padding(5)
+                                .padding(.leading, 5)
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(5)
+                )
             )
             .cornerRadius(20)
     }
@@ -82,5 +93,6 @@ struct HomePost: View {
 struct HomePost_Previews: PreviewProvider {
     static var previews: some View {
         HomePost(post: PostData[0])
+            .environmentObject(SourceList(sources: SourceData))
     }
 }

@@ -18,7 +18,7 @@ class Source: Codable, ObservableObject {
     var altImageLink: String?
     var created: Double
     
-    @Published var profileImage = Image("loading")
+    @Published var profileImageData = Data()
     
     enum CodingKeys: String, CodingKey {
         case sourceCode = "source_code"
@@ -35,5 +35,22 @@ class Source: Codable, ObservableObject {
         profileImageLink = try values.decode(String.self, forKey: .profileImageLink)
         altImageLink = try values.decodeIfPresent(String.self, forKey: .altImageLink)
         created = try values.decode(Double.self, forKey: .created)
+    }
+    
+    func getImage(size: CGSize) -> Image {
+        if self.profileImageData.isEmpty {
+            return Image("loading")
+        }
+        
+        else {
+            do {
+                let uiimage = try UIImage().downsample(imageData: self.profileImageData, to: size, scale: 1)
+                
+                return Image(uiImage: uiimage)
+            }
+            catch {
+                fatalError("Could not downsample image with url: " + self.profileImageLink)
+            }
+        }
     }
 }
