@@ -19,6 +19,9 @@
 		C32F178C24E9AC9400BE35D4 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32F178B24E9AC9400BE35D4 /* WebView.swift */; };
 		C32F178D24E9AC9400BE35D4 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32F178B24E9AC9400BE35D4 /* WebView.swift */; };
 		C32F178E24E9AC9400BE35D4 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32F178B24E9AC9400BE35D4 /* WebView.swift */; };
+		C335744F251A52D6009813B3 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C335744E251A52D6009813B3 /* RegisterRequest.swift */; };
+		C3357450251A52D6009813B3 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C335744E251A52D6009813B3 /* RegisterRequest.swift */; };
+		C3357451251A52D6009813B3 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C335744E251A52D6009813B3 /* RegisterRequest.swift */; };
 		C3596F3424A8A3C100269AD7 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3596F3324A8A3C100269AD7 /* PostRequest.swift */; };
 		C3596F3524A8A3C100269AD7 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3596F3324A8A3C100269AD7 /* PostRequest.swift */; };
 		C3596F3624A8A3C100269AD7 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3596F3324A8A3C100269AD7 /* PostRequest.swift */; };
@@ -108,8 +111,10 @@
 		C323CBDF2443043A000626C5 /* MoBlogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoBlogUITests.swift; sourceTree = "<group>"; };
 		C323CBE12443043A000626C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C32F178B24E9AC9400BE35D4 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C335744E251A52D6009813B3 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
 		C3596F3324A8A3C100269AD7 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoBlogRequest.swift; sourceTree = "<group>"; };
+		C39CC63B251CFD590004952F /* MoBlog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoBlog.entitlements; sourceTree = "<group>"; };
 		C3A71237244A6B24005BA03F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C3A7123B244A6DC5005BA03F /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		C3A7123F244B1665005BA03F /* HomePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePost.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 		C323CBB924430437000626C5 /* MoBlog */ = {
 			isa = PBXGroup;
 			children = (
+				C39CC63B251CFD590004952F /* MoBlog.entitlements */,
 				C3596F3224A8A37900269AD7 /* Api */,
 				C3AD4B512448D808009C4F87 /* Models */,
 				C3AD4B492448CFCA009C4F87 /* Components */,
@@ -226,6 +232,7 @@
 				C3596F3324A8A3C100269AD7 /* PostRequest.swift */,
 				C3ED861024F027410023308A /* SourceRequest.swift */,
 				C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */,
+				C335744E251A52D6009813B3 /* RegisterRequest.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -346,7 +353,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Filip Palmqvist";
 				TargetAttributes = {
 					C323CBB624430437000626C5 = {
@@ -429,6 +436,7 @@
 				C323CBBB24430437000626C5 /* AppDelegate.swift in Sources */,
 				C3596F3824A8D46300269AD7 /* MoBlogRequest.swift in Sources */,
 				C32F178C24E9AC9400BE35D4 /* WebView.swift in Sources */,
+				C335744F251A52D6009813B3 /* RegisterRequest.swift in Sources */,
 				C3ED862224F1328C0023308A /* HomeButton.swift in Sources */,
 				C3ED860924F023E20023308A /* Source.swift in Sources */,
 				C3A71238244A6B24005BA03F /* SettingsView.swift in Sources */,
@@ -451,6 +459,7 @@
 				C3A71239244A6B24005BA03F /* SettingsView.swift in Sources */,
 				C3ED861B24F032710023308A /* SourceList.swift in Sources */,
 				C323CBD52443043A000626C5 /* MoBlogTests.swift in Sources */,
+				C3357450251A52D6009813B3 /* RegisterRequest.swift in Sources */,
 				C3AD4B5A244A4595009C4F87 /* ExploreFeaturedPost.swift in Sources */,
 				C3A71241244B1665005BA03F /* HomePost.swift in Sources */,
 				C3A7123D244A6DC5005BA03F /* Section.swift in Sources */,
@@ -476,6 +485,7 @@
 				C3A7123A244A6B24005BA03F /* SettingsView.swift in Sources */,
 				C3ED861C24F032710023308A /* SourceList.swift in Sources */,
 				C323CBE02443043A000626C5 /* MoBlogUITests.swift in Sources */,
+				C3357451251A52D6009813B3 /* RegisterRequest.swift in Sources */,
 				C3AD4B5B244A4595009C4F87 /* ExploreFeaturedPost.swift in Sources */,
 				C3A71242244B1665005BA03F /* HomePost.swift in Sources */,
 				C3A7123E244A6DC5005BA03F /* Section.swift in Sources */,
@@ -546,6 +556,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -570,7 +581,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -606,6 +617,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -624,7 +636,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -638,11 +650,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MoBlog/MoBlog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MoBlog/Preview Content\"";
 				DEVELOPMENT_TEAM = 6385942QWA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MoBlog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -650,7 +664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fpalmqvist.MoBlog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -658,11 +672,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MoBlog/MoBlog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MoBlog/Preview Content\"";
 				DEVELOPMENT_TEAM = 6385942QWA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MoBlog/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -670,7 +686,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fpalmqvist.MoBlog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

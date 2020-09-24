@@ -29,11 +29,29 @@ struct MoBlogRequest {
     
     func getData(completion: @escaping(Result<Data, MoBlogError>) -> Void) {
         var request = URLRequest(url: resourceUrl)
-        
+            
         request.allHTTPHeaderFields = [
           "Content-Type": "application/json",
           "Authorization": API_KEY
         ]
+        
+        performRequest(request: request, completion: completion)
+    }
+    
+    func postData(dataToSend: Data, completion: @escaping(Result<Data, MoBlogError>) -> Void) {
+        var request = URLRequest(url: resourceUrl)
+        
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = [
+          "Content-Type": "application/json",
+          "Authorization": API_KEY
+        ]
+       
+        request.httpBody = dataToSend
+        performRequest(request: request, completion: completion)
+    }
+    
+    private func performRequest(request: URLRequest, completion: @escaping(Result<Data, MoBlogError>) -> Void) {
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
             guard let jsonData = data else {
