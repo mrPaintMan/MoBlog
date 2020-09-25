@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound]) {(granted, error) in
+            .requestAuthorization(options: [.alert, .sound]) { _, _ in
                 // Make sure permission to receive push notifications is granted
-                print("Permission is granted: \(granted)")
         }
         return true
     }
