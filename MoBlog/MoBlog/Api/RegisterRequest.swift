@@ -13,10 +13,10 @@ struct RegisterResponse: Decodable {
 }
 
 struct RegisterMessage: Encodable {
-    let device_token: Data
+    let device_token: String
     let source_codes: [String]
     
-    init(deviceToken: Data, sourceCodes: [String]) {
+    init(deviceToken: String, sourceCodes: [String]) {
         self.device_token = deviceToken
         self.source_codes = sourceCodes
     }
@@ -29,8 +29,9 @@ class RegisterRequest {
     init(_ deviceToken: Data, _ sourceCodes: [String]) {
         resource = "register"
         var data = Data()
+        let hexToken = deviceToken.map { String(format: "%02x", $0) }.joined()
         
-        let message = RegisterMessage(deviceToken: deviceToken, sourceCodes: sourceCodes)
+        let message = RegisterMessage(deviceToken: hexToken, sourceCodes: sourceCodes)
         
         do {
             data = try JSONEncoder().encode(message)
