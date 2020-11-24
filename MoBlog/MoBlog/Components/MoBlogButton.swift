@@ -12,29 +12,43 @@ struct GradientButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(.horizontal)
-            .foregroundColor(Color.white)
             .padding()
+            .foregroundColor(Color.white)
             .background(Color(.black).opacity(configuration.isPressed ? 0.2 : 0))
             .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .animation(.easeIn(duration: 0.05))
+            .padding(.bottom, 20)
+            .padding(.top, 10)
     }
 }
 
-struct HomeButton: View {
+struct SourceButtonStyle: ButtonStyle {
+    private let width = UIScreen.main.bounds.size.width / 2 - 75
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .frame(width: width)
+            .padding(15)
+            .foregroundColor(Color.white)
+            .background(Color(.black).opacity(configuration.isPressed ? 0.2 : 0))
+            .background(Color.moBlogRed)
+            .animation(.easeIn(duration: 0.05))
+    }
+}
+
+struct MoBlogButton: View {
     var action: () -> Void
     var label: String
     var body: some View {
         Button(action: action, label: { Text(label) })
-            .buttonStyle(GradientButtonStyle())
-        
     }
 }
 
-struct HomeButton_Previews: PreviewProvider {
+struct MoBlogButton_Previews: PreviewProvider {
     static var previews: some View {
-        HomeButton(action: {
+        MoBlogButton(action: {
             print("hey")
         }, label: "Hello World")
+        .buttonStyle(GradientButtonStyle())
     }
 }

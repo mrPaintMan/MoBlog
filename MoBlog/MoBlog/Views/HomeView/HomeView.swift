@@ -22,33 +22,26 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.init(.systemGray6)
-                .edgesIgnoringSafeArea(.all)
-
-                    
+        MoBlogView {
             ScrollView {
                 
                 VStack {
-
-                    Text("MoBlog")
-                        .font(.largeTitle)
-
+                    Text("MoBlog").font(.largeTitle)
+                    
                     ForEach(postList.posts, content: { post in
                         HomePost(post: post)
-                            .padding(.horizontal, 5)
-                        .onTapGesture {
-                            self.currentLink = post.link
-                            self.showWebView = true
+                            .padding(5)
+                            .onTapGesture {
+                                self.currentLink = post.link
+                                self.showWebView = true
                         }
                     })
                     
                     if self.showLoadButton {
-                        HomeButton(action: {
+                        MoBlogButton(action: {
                             self.loadMorePosts()
                         }, label: "Load more!")
-                            .padding(.bottom, 20)
-                            .padding(.top, 10)
+                            .buttonStyle(GradientButtonStyle())
                     }
                 }
                 .sheet(isPresented: $showWebView, content: {
@@ -87,5 +80,6 @@ struct HomeView_Previews: PreviewProvider {
             .environment(\.colorScheme, .dark)
             .environmentObject(PostList(posts: PostData))
             .environmentObject(SourceList(sources: SourceData))
+        
     }
 }

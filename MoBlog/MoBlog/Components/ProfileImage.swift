@@ -8,19 +8,21 @@
 
 import SwiftUI
 
-struct HomeProfileImage: View {
+struct ProfileImage: View {
     @ObservedObject var source: Source
+    let width: CGFloat
+    let height: CGFloat
     
     var body: some View {
-        self.source.getImage(size: CGSize(width: 50, height: 50))
+        self.source.getImage(size: CGSize(width: width, height: height))
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: 50, height: 50, alignment: .center)
+            .frame(width: width, height: height, alignment: .center)
             .background(Color(.darkGray))
             .clipShape(Circle())
             .overlay(
                 Circle()
-                    .stroke(Color(.white), lineWidth: 1)
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]), startPoint: .leading, endPoint: .trailing), lineWidth: 1)
         )
     }
 }
@@ -28,7 +30,7 @@ struct HomeProfileImage: View {
 
 struct HomeProfileImage_Previews: PreviewProvider {
     static var previews: some View {
-        HomeProfileImage(source: SourceData[0])
+        ProfileImage(source: SourceData[0], width: 50, height: 50)
         .environment(\.colorScheme, .dark)
     }
 }

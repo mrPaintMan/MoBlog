@@ -21,10 +21,7 @@ struct ExploreView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.init(.systemGray6)
-                .edgesIgnoringSafeArea(.all)
-            
+        MoBlogView {
             VStack {
                 Text("Explore")
                     .font(.largeTitle)

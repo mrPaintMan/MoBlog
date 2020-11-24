@@ -19,7 +19,7 @@ struct ExploreFeaturedPost: View {
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
             )
-            .foregroundColor(Color.blue.opacity(0.8))
+            .foregroundColor(Color.moBlogRed.opacity(0.8))
             .cornerRadius(15)
     }
 }

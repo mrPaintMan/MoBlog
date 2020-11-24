@@ -12,6 +12,7 @@ struct HomePost: View {
     @EnvironmentObject var sourceList: SourceList
     var age: String
     @ObservedObject var post: Post
+    let postSize = CGSize(width: UIScreen.main.bounds.size.width - 20, height: 200)
     
     init(post: Post) {
         let unixAge = NSDate().timeIntervalSince1970 - post.created
@@ -21,15 +22,13 @@ struct HomePost: View {
     
     var body: some View {
         Rectangle()
-            .frame(height: 150)
+            .frame(width: postSize.width, height: postSize.height, alignment: .center)
             .foregroundColor(.clear)
             .background(
-                GeometryReader { geometry in
-                    self.post.getImage(size: geometry.size)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-                }
+                self.post.getImage(size: postSize)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(alignment: .center)
             )
             .overlay(
                     
@@ -39,8 +38,8 @@ struct HomePost: View {
                     VStack {
                         Spacer()
                         
-                        LinearGradient(gradient: Gradient(colors: [Color(.black).opacity(0), Color(.black).opacity(0.9)]), startPoint: .top, endPoint: .bottom)
-                            .frame(height: 120)
+                        LinearGradient(gradient: Gradient(colors: [Color(.black).opacity(0), Color(.black)]), startPoint: .top, endPoint: .bottom)
+                            .frame(height: 150)
                     }
                 )
                 .overlay(
@@ -48,9 +47,12 @@ struct HomePost: View {
                     VStack {
                         
                         HStack {
-
-                            HomeProfileImage(source: getSource())
-                                .padding(5)
+                            NavigationLink(
+                                destination: SourceView(source: getSource()),
+                                label: {
+                                    ProfileImage(source: getSource(), width: 50, height: 50)
+                                        .padding(5)
+                                })
                             
                             Spacer()
                         }
@@ -78,7 +80,7 @@ struct HomePost: View {
                     .padding(5)
                 )
             )
-            .cornerRadius(20)
+            .cornerRadius(10)
     }
     
     fileprivate func getSource() -> Source {

@@ -10,10 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        ZStack {
-            Color.init(.systemGray6)
-                .edgesIgnoringSafeArea(.all)
-            
+        MoBlogView {
             HStack {
                 Text("Subscriptions")
                     .font(.title)

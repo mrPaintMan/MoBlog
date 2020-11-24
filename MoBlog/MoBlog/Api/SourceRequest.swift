@@ -46,13 +46,23 @@ class SourceRequest {
     
     func getImageData(sources: [Source]) -> [Source] {
         sources.forEach { source in
-            guard let url = URL(string: source.profileImageLink) else { return }
+            guard let imageUrl = URL(string: source.profileImageLink) else { return }
+            guard let altUrl = URL(string: source.altImageLink) else { return }
             
-            URLSession.shared.dataTask(with: url) { data, response, error in
+            URLSession.shared.dataTask(with: imageUrl) { data, response, error in
                 guard let data = data else { return }
                 
                 DispatchQueue.main.async {
                     source.profileImageData = data
+                }
+                
+            }.resume()
+            
+            URLSession.shared.dataTask(with: altUrl) { data, response, error in
+                guard let data = data else { return }
+                
+                DispatchQueue.main.async {
+                    source.altImageData = data
                 }
                 
             }.resume()

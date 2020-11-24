@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                 didRegisterForRemoteNotificationsWithDeviceToken
                     deviceToken: Data) {
-        let sourceCodes = ["dayz", "gen_zero", "minecraft_snapshot"]
+        let sourceCodes = ["dayz", "gen_zero", "minecraft_snapshot", "no_mans_sky", "windbound"]
         let _ = RegisterRequest(deviceToken, sourceCodes)
     }
 
