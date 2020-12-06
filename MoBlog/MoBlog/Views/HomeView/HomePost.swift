@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomePost: View {
     @EnvironmentObject var sourceList: SourceList
+    @Environment(\.managedObjectContext) var viewContext
     var age: String
     @ObservedObject var post: Post
     let postSize = CGSize(width: UIScreen.main.bounds.size.width - 20, height: 200)
@@ -48,7 +49,7 @@ struct HomePost: View {
                         
                         HStack {
                             NavigationLink(
-                                destination: SourceView(source: getSource()),
+                                destination: SourceView(source: getSource(), viewContext: viewContext),
                                 label: {
                                     ProfileImage(source: getSource(), width: 50, height: 50)
                                         .padding(5)

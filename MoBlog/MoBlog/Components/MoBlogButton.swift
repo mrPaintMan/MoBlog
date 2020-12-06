@@ -11,44 +11,56 @@ import SwiftUI
 struct GradientButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding(.horizontal)
-            .padding()
+            .padding(5)
             .foregroundColor(Color.white)
             .background(Color(.black).opacity(configuration.isPressed ? 0.2 : 0))
             .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .animation(.easeIn(duration: 0.05))
-            .padding(.bottom, 20)
-            .padding(.top, 10)
     }
 }
 
 struct SourceButtonStyle: ButtonStyle {
-    private let width = UIScreen.main.bounds.size.width / 2 - 75
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .frame(width: width)
-            .padding(15)
             .foregroundColor(Color.white)
             .background(Color(.black).opacity(configuration.isPressed ? 0.2 : 0))
-            .background(Color.moBlogRed)
             .animation(.easeIn(duration: 0.05))
     }
 }
 
 struct MoBlogButton: View {
+    var width: Double
+    var height: Double = 40
     var action: () -> Void
     var label: String
     var body: some View {
-        Button(action: action, label: { Text(label) })
+        Button(action: action, label: {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(Color.white.opacity(0))
+                    .frame(width: CGFloat(width), height: CGFloat(height))
+                    .background(Color.blue.opacity(0.0000001))
+                Text(label)
+            }
+        })
     }
 }
 
 struct MoBlogButton_Previews: PreviewProvider {
     static var previews: some View {
-        MoBlogButton(action: {
-            print("hey")
-        }, label: "Hello World")
-        .buttonStyle(GradientButtonStyle())
+        HStack {
+            MoBlogButton(width: 150, action: {
+                print("hey")
+            }, label: "Hello World")
+            .buttonStyle(GradientButtonStyle())
+            
+            MoBlogButton(width: 170, action: {
+                print("hey")
+            }, label: "Hello World")
+            .buttonStyle(SourceButtonStyle())
+            .background(Color.moBlogRed)
+        }
+        
     }
 }

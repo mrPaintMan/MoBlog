@@ -12,8 +12,6 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
@@ -22,13 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .requestAuthorization(options: [.alert, .sound]) { _, _ in
                 // Make sure permission to receive push notifications is granted
         }
+        
         return true
     }
 
     func application(_ application: UIApplication,
                 didRegisterForRemoteNotificationsWithDeviceToken
                     deviceToken: Data) {
-        let sourceCodes = ["dayz", "gen_zero", "minecraft_snapshot", "no_mans_sky", "windbound"]
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let sourceCodes = getNotificationsList(viewContext: context)
         let _ = RegisterRequest(deviceToken, sourceCodes)
     }
 

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SourceView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -16,33 +17,35 @@ struct SourceView: View {
     @State var showWebView = false
     @State var showLoadButton = true
     @State var currentLink = ""
-    
-    init(source: Source) {
-        self.source = source
-        
-        guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: self.source.sourceCode).response?.data else {
-            
-            return
-        }
-        
-        self.postList.posts = posts
-    }
+    @State var followingInfo: FollowingInfo?
+    var viewContext: NSManagedObjectContext
     
     var body: some View {
         MoBlogView {
             ScrollView {
                 VStack {
-                    SourcePresentation(source: source, dismissFunc: {self.presentationMode.wrappedValue.dismiss()})
+                    SourcePresentation(source: source, viewContext: viewContext, dismissFunc: {self.presentationMode.wrappedValue.dismiss()}).environmentObject(followingInfo ?? FollowingInfo(context: viewContext))
                     
-                    ForEach(1..<postList.posts.count, id: \.self) { i in
-                        if i % 2 == 1 {
-                            HStack {
-                                SourcePost(post: postList.posts[i - 1])
-                                    .onTapGesture {
-                                        self.currentLink = postList.posts[i - 1].link
-                                        self.showWebView = true
-                                    }
-                                
+                    
+                    if self.postList.posts.count > 0 {
+                        ForEach(1..<postList.posts.count, id: \.self) { i in
+                            if i % 2 == 1 {
+                                HStack {
+                                    SourcePost(post: postList.posts[i - 1])
+                                        .onTapGesture {
+                                            self.currentLink = postList.posts[i - 1].link
+                                            self.showWebView = true
+                                        }
+                                    
+                                    SourcePost(post: postList.posts[i])
+                                        .onTapGesture {
+                                            self.currentLink = postList.posts[i].link
+                                            self.showWebView = true
+                                        }
+                                }
+                            }
+                            
+                            else if i == postList.posts.count - 1 {
                                 SourcePost(post: postList.posts[i])
                                     .onTapGesture {
                                         self.currentLink = postList.posts[i].link
@@ -50,22 +53,14 @@ struct SourceView: View {
                                     }
                             }
                         }
-                        
-                        else if i == postList.posts.count - 1 {
-                            SourcePost(post: postList.posts[i])
-                                .onTapGesture {
-                                    self.currentLink = postList.posts[i].link
-                                    self.showWebView = true
-                                }
-                        }
-                        
                     }
                     
                     if self.showLoadButton {
-                        MoBlogButton(action: {
+                        MoBlogButton(width: 125, action: {
                             self.loadMorePosts()
                         }, label: "Load more!")
-                            .buttonStyle(GradientButtonStyle())
+                        .buttonStyle(GradientButtonStyle())
+                        .padding(.bottom)
                     }
                     
                     Spacer()
@@ -77,6 +72,55 @@ struct SourceView: View {
             })
         }
         .navigationBarHidden(true)
+        .onAppear {
+            fetchData()
+        }
+    }
+    
+    func fetchData() {
+        let request = FollowingInfo.fetchRequest() as NSFetchRequest<FollowingInfo>
+        
+        let pred = NSPredicate(format: "sourceCode == %@", self.source.sourceCode)
+        request.predicate = pred
+        
+        do {
+            let result = try viewContext.fetch(request)
+            
+            // Our Source exists in CoreData
+            if result.count == 1 {
+                self.followingInfo = result[0]
+            }
+            
+            // Our Source does not exist in CoreData
+            else if result.count == 0 {
+                let followingInfo = FollowingInfo(context: viewContext)
+                followingInfo.following = false
+                followingInfo.notification = false
+                followingInfo.sourceCode = source.sourceCode
+                
+                self.followingInfo = followingInfo
+                
+               saveViewContext(viewContext)
+            }
+            
+            else {
+                fatalError("Found multiple entries in CoreData for: " + source.sourceCode)
+            }
+        }
+        
+        catch {
+            fatalError("Error for sourceCode: \(source.sourceCode), error : \(error)")
+        }
+        
+        
+        DispatchQueue.main.async {
+            guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: self.source.sourceCode).response?.data else {
+                
+                return
+            }
+            
+            self.postList.posts = posts
+        }
     }
     
     func loadMorePosts() -> Void {
@@ -99,6 +143,6 @@ struct SourceView: View {
 
 struct SourceView_Previews: PreviewProvider {
     static var previews: some View {
-        SourceView(source: SourceData[4])
+        SourceView(source: SourceData[4], viewContext: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
     }
 }

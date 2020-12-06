@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C301F1862573E1B700956E85 /* SourceNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301F1852573E1B700956E85 /* SourceNotificationButton.swift */; };
+		C301F1872573E1B700956E85 /* SourceNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301F1852573E1B700956E85 /* SourceNotificationButton.swift */; };
+		C301F1882573E1B700956E85 /* SourceNotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301F1852573E1B700956E85 /* SourceNotificationButton.swift */; };
+		C301F18D257D051900956E85 /* CoreDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301F18C257D051900956E85 /* CoreDataApi.swift */; };
+		C301F18E257D051900956E85 /* CoreDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301F18C257D051900956E85 /* CoreDataApi.swift */; };
+		C301F18F257D051900956E85 /* CoreDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301F18C257D051900956E85 /* CoreDataApi.swift */; };
 		C323CBBB24430437000626C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323CBBA24430437000626C5 /* AppDelegate.swift */; };
 		C323CBBD24430437000626C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C323CBBC24430437000626C5 /* SceneDelegate.swift */; };
 		C323CBC024430437000626C5 /* MoBlog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C323CBBE24430437000626C5 /* MoBlog.xcdatamodeld */; };
@@ -43,6 +49,9 @@
 		C36FB2F5254F0AEE006411C9 /* MoBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */; };
 		C36FB2F6254F0AEE006411C9 /* MoBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */; };
 		C36FB2F7254F0AEE006411C9 /* MoBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */; };
+		C36FB41D2572CEC100187C86 /* SourceFollowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB41C2572CEC100187C86 /* SourceFollowingButton.swift */; };
+		C36FB41E2572CEC100187C86 /* SourceFollowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB41C2572CEC100187C86 /* SourceFollowingButton.swift */; };
+		C36FB41F2572CEC100187C86 /* SourceFollowingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB41C2572CEC100187C86 /* SourceFollowingButton.swift */; };
 		C3A71238244A6B24005BA03F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A71237244A6B24005BA03F /* SettingsView.swift */; };
 		C3A71239244A6B24005BA03F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A71237244A6B24005BA03F /* SettingsView.swift */; };
 		C3A7123A244A6B24005BA03F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A71237244A6B24005BA03F /* SettingsView.swift */; };
@@ -113,6 +122,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C301F1852573E1B700956E85 /* SourceNotificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceNotificationButton.swift; sourceTree = "<group>"; };
+		C301F18C257D051900956E85 /* CoreDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataApi.swift; sourceTree = "<group>"; };
 		C323CBB724430437000626C5 /* MoBlog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoBlog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C323CBBA24430437000626C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C323CBBC24430437000626C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +148,7 @@
 		C3596F3324A8A3C100269AD7 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoBlogRequest.swift; sourceTree = "<group>"; };
 		C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoBlogView.swift; sourceTree = "<group>"; };
+		C36FB41C2572CEC100187C86 /* SourceFollowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceFollowingButton.swift; sourceTree = "<group>"; };
 		C39CC63B251CFD590004952F /* MoBlog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoBlog.entitlements; sourceTree = "<group>"; };
 		C3A71237244A6B24005BA03F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C3A7123B244A6DC5005BA03F /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -282,6 +294,8 @@
 				C3ABF062254DB969003ADBE4 /* SourceView.swift */,
 				C353753C2569BE7000EFCF02 /* SourcePost.swift */,
 				C35375462569DAE600EFCF02 /* SourcePresentation.swift */,
+				C36FB41C2572CEC100187C86 /* SourceFollowingButton.swift */,
+				C301F1852573E1B700956E85 /* SourceNotificationButton.swift */,
 			);
 			path = SourceView;
 			sourceTree = "<group>";
@@ -293,6 +307,7 @@
 				C3ED861024F027410023308A /* SourceRequest.swift */,
 				C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */,
 				C335744E251A52D6009813B3 /* RegisterRequest.swift */,
+				C301F18C257D051900956E85 /* CoreDataApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -489,15 +504,18 @@
 			files = (
 				C353752D2568720300EFCF02 /* View.swift in Sources */,
 				C3A71244244C6DEE005BA03F /* Tag.swift in Sources */,
+				C36FB41D2572CEC100187C86 /* SourceFollowingButton.swift in Sources */,
 				C3ED862724F2B2C00023308A /* UIImage.swift in Sources */,
 				C3596F3424A8A3C100269AD7 /* PostRequest.swift in Sources */,
 				C3ED861124F027410023308A /* SourceRequest.swift in Sources */,
 				C3AD4B55244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3ED861A24F032710023308A /* SourceList.swift in Sources */,
 				C35375472569DAE600EFCF02 /* SourcePresentation.swift in Sources */,
+				C301F18D257D051900956E85 /* CoreDataApi.swift in Sources */,
 				C3AD4B59244A4595009C4F87 /* ExploreFeaturedPost.swift in Sources */,
 				C3ED861E24F037830023308A /* ProfileImage.swift in Sources */,
 				C323CBBB24430437000626C5 /* AppDelegate.swift in Sources */,
+				C301F1862573E1B700956E85 /* SourceNotificationButton.swift in Sources */,
 				C3596F3824A8D46300269AD7 /* MoBlogRequest.swift in Sources */,
 				C32F178C24E9AC9400BE35D4 /* WebView.swift in Sources */,
 				C335744F251A52D6009813B3 /* RegisterRequest.swift in Sources */,
@@ -525,8 +543,10 @@
 			files = (
 				C35375482569DAE600EFCF02 /* SourcePresentation.swift in Sources */,
 				C3A71245244C6DEE005BA03F /* Tag.swift in Sources */,
+				C301F1872573E1B700956E85 /* SourceNotificationButton.swift in Sources */,
 				C3A71239244A6B24005BA03F /* SettingsView.swift in Sources */,
 				C353753E2569BE7100EFCF02 /* SourcePost.swift in Sources */,
+				C36FB41E2572CEC100187C86 /* SourceFollowingButton.swift in Sources */,
 				C35375352569A51700EFCF02 /* Color.swift in Sources */,
 				C3ED861B24F032710023308A /* SourceList.swift in Sources */,
 				C3ABF064254DB969003ADBE4 /* SourceView.swift in Sources */,
@@ -538,6 +558,7 @@
 				C3ED861224F027410023308A /* SourceRequest.swift in Sources */,
 				C3AD4B56244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3596F3924A8D46300269AD7 /* MoBlogRequest.swift in Sources */,
+				C301F18E257D051900956E85 /* CoreDataApi.swift in Sources */,
 				C3596F3524A8A3C100269AD7 /* PostRequest.swift in Sources */,
 				C3AD4B4C2448D260009C4F87 /* HomeView.swift in Sources */,
 				C3ED860624EDB97E0023308A /* PostList.swift in Sources */,
@@ -557,8 +578,10 @@
 			files = (
 				C35375492569DAE600EFCF02 /* SourcePresentation.swift in Sources */,
 				C3A71246244C6DEE005BA03F /* Tag.swift in Sources */,
+				C301F1882573E1B700956E85 /* SourceNotificationButton.swift in Sources */,
 				C3A7123A244A6B24005BA03F /* SettingsView.swift in Sources */,
 				C353753F2569BE7100EFCF02 /* SourcePost.swift in Sources */,
+				C36FB41F2572CEC100187C86 /* SourceFollowingButton.swift in Sources */,
 				C35375362569A51700EFCF02 /* Color.swift in Sources */,
 				C3ED861C24F032710023308A /* SourceList.swift in Sources */,
 				C3ABF065254DB969003ADBE4 /* SourceView.swift in Sources */,
@@ -570,6 +593,7 @@
 				C3ED861324F027410023308A /* SourceRequest.swift in Sources */,
 				C3AD4B57244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3596F3A24A8D46300269AD7 /* MoBlogRequest.swift in Sources */,
+				C301F18F257D051900956E85 /* CoreDataApi.swift in Sources */,
 				C3596F3624A8A3C100269AD7 /* PostRequest.swift in Sources */,
 				C3AD4B4D2448D260009C4F87 /* HomeView.swift in Sources */,
 				C3ED860724EDB97E0023308A /* PostList.swift in Sources */,

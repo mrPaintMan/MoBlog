@@ -38,10 +38,11 @@ struct HomeView: View {
                     })
                     
                     if self.showLoadButton {
-                        MoBlogButton(action: {
+                        MoBlogButton(width: 125, action: {
                             self.loadMorePosts()
                         }, label: "Load more!")
                             .buttonStyle(GradientButtonStyle())
+                            .padding(.bottom)
                     }
                 }
                 .sheet(isPresented: $showWebView, content: {
