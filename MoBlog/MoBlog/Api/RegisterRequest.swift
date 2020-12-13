@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct RegisterResponse: Decodable {
+fileprivate struct RegisterResponse: Decodable {
     let status: String
 }
 
-struct RegisterMessage: Encodable {
+fileprivate struct RegisterMessage: Encodable {
     let device_token: String
     let source_codes: [String]
     
@@ -24,23 +24,20 @@ struct RegisterMessage: Encodable {
 
 class RegisterRequest {
     let resource: String
-    var response: RegisterResponse?
+    fileprivate var response: RegisterResponse?
     
-    init(_ deviceToken: Data, _ sourceCodes: [String]) {
+    init(_ deviceToken: String, _ sourceCodes: [String]) {
         resource = "register"
+        let message = RegisterMessage(deviceToken: deviceToken, sourceCodes: sourceCodes)
         var data = Data()
-        let hexToken = deviceToken.map { String(format: "%02x", $0) }.joined()
-        
-        let message = RegisterMessage(deviceToken: hexToken, sourceCodes: sourceCodes)
+        let params = ""
+        let moBlogResuest = MoBlogRequest(resource: self.resource, params: params)
         
         do {
             data = try JSONEncoder().encode(message)
         } catch {
             fatalError("Failed to either post data to register endpoint, or to encode json message")
         }
-        
-        let params = ""
-        let moBlogResuest = MoBlogRequest(resource: self.resource, params: params)
         
         moBlogResuest.postData(dataToSend: data) { [weak self] result in
             switch result {

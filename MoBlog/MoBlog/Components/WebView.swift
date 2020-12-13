@@ -11,7 +11,7 @@ import SwiftUI
 import WebKit
 
 struct WebView: UIViewRepresentable {
-    var url: String
+    @Binding var url: String
     
     func makeUIView(context: Context) -> WKWebView {
         guard let url = URL(string: self.url) else {

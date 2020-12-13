@@ -29,7 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     deviceToken: Data) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let sourceCodes = getNotificationsList(viewContext: context)
-        let _ = RegisterRequest(deviceToken, sourceCodes)
+        let hexToken = deviceToken.map { String(format: "%02x", $0) }.joined()
+        saveDeviceToken(hexToken, viewContext: context)
+        
+        let _ = RegisterRequest(hexToken, sourceCodes)
     }
 
     func application(_ application: UIApplication,

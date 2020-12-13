@@ -9,40 +9,55 @@
 import Foundation
 import CoreData
 
-func getFollowingInfo(viewContext: NSManagedObjectContext) -> [FollowingInfo] {
+func getCoreData<T: NSManagedObject>(viewContext: NSManagedObjectContext) -> [T] {
     do {
-        let result = try viewContext.fetch(FollowingInfo.fetchRequest()) as [FollowingInfo]
+        let result = try viewContext.fetch(T.fetchRequest()) as! [T]
         return result
     }
     catch {
-        fatalError("Something went wrong with fetching FollowingInfo from CoreData in getFollowingList()")
+        fatalError("Something went wrong with fetching data from CoreData in getCoreData(): \(error)")
     }
 }
 
 func getFollowingList(viewContext: NSManagedObjectContext) -> [String] {
-    var sourceCodes: [String] = []
-    let result = getFollowingInfo(viewContext: viewContext)
+    let result: [FollowingInfo] = getCoreData(viewContext: viewContext)
     
-    result.forEach({ source in
-        if source.following {
-            sourceCodes.append(source.sourceCode!)
-        }
-    })
-    
-    return sourceCodes
+    return result.filter({ $0.following }).map({ $0.sourceCode! })
 }
 
 func getNotificationsList(viewContext: NSManagedObjectContext) -> [String] {
-    var sourceCodes: [String] = []
-    let result = getFollowingInfo(viewContext: viewContext)
+    let result: [FollowingInfo] = getCoreData(viewContext: viewContext)
     
-    result.forEach({ source in
-        if source.notification {
-            sourceCodes.append(source.sourceCode!)
+    return result.filter({ $0.notification }).map({ $0.sourceCode! })
+}
+
+func getDeviceToken(viewContext: NSManagedObjectContext) -> String? {
+    let result: [DeviceToken] = getCoreData(viewContext: viewContext)
+    
+    return result.isEmpty ? nil : result[0].hexToken
+}
+
+func saveDeviceToken(_ token: String, viewContext: NSManagedObjectContext) {
+    let result: [DeviceToken] = getCoreData(viewContext: viewContext)
+        
+    if result.isEmpty {
+        let newDeviceToken = DeviceToken(context: viewContext)
+        newDeviceToken.hexToken = token
+        saveViewContext(viewContext)
+    }
+    
+    else if result.count == 1 {
+        let oldDeviceToken = result[0]
+        
+        if oldDeviceToken.hexToken != token {
+            oldDeviceToken.hexToken = token
+            saveViewContext(viewContext)
         }
-    })
+    }
     
-    return sourceCodes
+    else {
+        fatalError("Found multiple devicetokens in coreData")
+    }
 }
 
 func saveViewContext(_ viewContext: NSManagedObjectContext) {
@@ -51,6 +66,6 @@ func saveViewContext(_ viewContext: NSManagedObjectContext) {
     }
     
     catch {
-        fatalError("Could not save followingInfo... \(error)")
+        fatalError("Could not save viewContext... \(error)")
     }
 }

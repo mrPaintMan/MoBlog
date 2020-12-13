@@ -12,4 +12,5 @@ import SwiftUI
 extension Color {
     
     static let moBlogRed = Color("brandColor")
+    static let systemBlack = Color("systemBlack")
 }

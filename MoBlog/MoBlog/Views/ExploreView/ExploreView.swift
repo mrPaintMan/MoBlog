@@ -10,10 +10,14 @@ import SwiftUI
 
 struct ExploreView: View {
     let featuredPosts = [PostData[9], PostData[8], PostData[7], PostData[6]]
+    @EnvironmentObject var sourceList: SourceList
+    @Environment(\.managedObjectContext) var viewContext
     @State var showInternetAlert = false
     @State var showWebView = false
     @State var currentLink = ""
     @State var newPosts = [Post]()
+    
+    let alert = Alert(title: Text("Something went wrong..."), message: Text("Something went wrong when talking to the MoBlog servers. Make sure you have a stable internet connection."), dismissButton: nil)
     
     init(){
         UITableView.appearance().backgroundColor = .clear
@@ -21,12 +25,14 @@ struct ExploreView: View {
     }
     
     var body: some View {
+        
         MoBlogView {
             VStack {
-                Text("Explore")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(.bottom, 20)
+                
+                // MARK: Title
+                
+                ExploreTitle()
+                Divider()
                 
                 // MARK: Featured
                 
@@ -64,23 +70,20 @@ struct ExploreView: View {
                 Spacer()
             }
         }
-        .sheet(isPresented: $showWebView, content: {
-            WebView(url: self.currentLink)
-        })
-        .onAppear {
-            if self.newPosts.isEmpty {
-                guard let posts: [Post] = PostRequest(page: 0, sourceCode: nil).response?.data else {
-                    self.showInternetAlert = true
-                    return
-               }
-                   
-                self.newPosts = Array(posts[...3])
-            }
+        .sheet(isPresented: $showWebView) { WebView(url: self.$currentLink) }
+        .alert(isPresented: $showInternetAlert) { self.alert }
+        .onAppear { loadNewPosts() }
+    }
+    
+    func loadNewPosts() {
+        if self.newPosts.isEmpty {
+            guard let posts: [Post] = PostRequest(page: 0, sourceCode: nil).response?.data else {
+                self.showInternetAlert = true
+                return
+           }
+               
+            self.newPosts = Array(posts[...3])
         }
-        .alert(isPresented: $showInternetAlert) {
-            Alert(title: Text("Something went wrong..."), message: Text("Something went wrong when talking to the MoBlog servers. Make sure you have a stable internet connection."), dismissButton: nil)
-        }
-        
     }
 }
 

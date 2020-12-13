@@ -68,7 +68,7 @@ struct SourceView: View {
             }
             .edgesIgnoringSafeArea(.top)
             .sheet(isPresented: $showWebView, content: {
-                WebView(url: self.currentLink)
+                WebView(url: self.$currentLink)
             })
         }
         .navigationBarHidden(true)

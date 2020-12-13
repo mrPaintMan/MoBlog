@@ -11,7 +11,7 @@ import SwiftUI
 
 let SourceData: [Source] = loadLocalData("SourceData.json")
 
-class Source: Codable, ObservableObject {
+class Source: Codable, Identifiable, ObservableObject {
     var sourceCode: String
     var name: String
     var description: String

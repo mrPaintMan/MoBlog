@@ -16,11 +16,6 @@ struct HomeView: View {
     @State var showLoadButton = true
     @State var currentLink = ""
     
-    init() {
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
-    }
-    
     var body: some View {
         MoBlogView {
             ScrollView {
@@ -46,7 +41,7 @@ struct HomeView: View {
                     }
                 }
                 .sheet(isPresented: $showWebView, content: {
-                    WebView(url: self.currentLink)
+                    WebView(url: self.$currentLink)
                 })
             }
         }
