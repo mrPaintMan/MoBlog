@@ -10,16 +10,18 @@ import SwiftUI
 import CoreData
 
 struct SearchRow: View {
+    @EnvironmentObject var postList: PostList
     @State var subText: String = ""
     var source: Source
     var viewContext: NSManagedObjectContext
     
     var body: some View {
         NavigationLink(
-            destination: SourceView(source: source, viewContext: viewContext),
+            destination: SourceView(source: source, viewContext: viewContext).environmentObject(postList),
             label: {
                 ProfileImage(source: source, width: 50, height: 50)
                     .padding(.trailing)
+                
                 if !subText.isEmpty {
                     VStack(alignment: .leading){
                         Text(source.name).font(.title2).foregroundColor(.systemBlack)
@@ -28,7 +30,9 @@ struct SearchRow: View {
                 }
                 
                 else {
-                    Text(source.name).font(.title2)
+                    Text(source.name)
+                        .font(.title2)
+                        .foregroundColor(.systemBlack)
                 }
                 
                 Spacer()

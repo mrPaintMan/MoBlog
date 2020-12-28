@@ -18,23 +18,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        guard let posts = PostRequest(page: 0, sourceCode: nil).response?.data else {
-               return
-           }
-        
-        guard let sources = SourceRequest(page: 0).response?.data else {
-               return
-           }
-              
-        self.postList.posts = posts
-        self.sourceList.sources = sources
-        
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Get the managed object context from the shared persistent container.
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let followingList = getFollowingList(viewContext: context)
+       
+        // Only fetch data if at least one source is being followed.
+        if !followingList.isEmpty {
+            guard let posts = PostRequest(page: 0, sourceCodes: followingList).response?.data else {
+                   return
+               }
+                  
+            self.postList.posts = posts
+        }
+        
+        guard let sources = SourceRequest(page: 0).response?.data else {
+               return
+           }
+        
+        self.sourceList.sources = sources
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.

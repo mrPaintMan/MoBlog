@@ -11,12 +11,14 @@ import CoreData
 
 struct SourceFollowingButton: View {
     @EnvironmentObject var followingInfo: FollowingInfo
+    @Binding var shouldReloadPostList: Bool
     var viewContext: NSManagedObjectContext
     
     var body: some View {
         MoBlogButton(width: 150, action: {
             followingInfo.following.toggle() 
             saveViewContext(viewContext)
+            shouldReloadPostList.toggle()
             
         }, label: followingInfo.following ? "Following" : "Follow")
         .buttonStyle(SourceButtonStyle())
@@ -29,6 +31,6 @@ struct SourceFollowingButton: View {
 struct SourceFollowingButton_Previews: PreviewProvider {
     static let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     static var previews: some View {
-        SourceFollowingButton(viewContext: viewContext)
+        SourceFollowingButton(shouldReloadPostList: .constant(false), viewContext: viewContext)
     }
 }

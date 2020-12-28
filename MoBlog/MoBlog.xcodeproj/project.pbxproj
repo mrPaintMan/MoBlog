@@ -46,6 +46,9 @@
 		C3596F3824A8D46300269AD7 /* MoBlogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */; };
 		C3596F3924A8D46300269AD7 /* MoBlogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */; };
 		C3596F3A24A8D46300269AD7 /* MoBlogRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */; };
+		C36809A92599DD3500448750 /* HomeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36809A82599DD3500448750 /* HomeTitle.swift */; };
+		C36809AA2599DD3500448750 /* HomeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36809A82599DD3500448750 /* HomeTitle.swift */; };
+		C36809AB2599DD3500448750 /* HomeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36809A82599DD3500448750 /* HomeTitle.swift */; };
 		C36FB2F5254F0AEE006411C9 /* MoBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */; };
 		C36FB2F6254F0AEE006411C9 /* MoBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */; };
 		C36FB2F7254F0AEE006411C9 /* MoBlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */; };
@@ -159,6 +162,7 @@
 		C35375462569DAE600EFCF02 /* SourcePresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcePresentation.swift; sourceTree = "<group>"; };
 		C3596F3324A8A3C100269AD7 /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		C3596F3724A8D46300269AD7 /* MoBlogRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoBlogRequest.swift; sourceTree = "<group>"; };
+		C36809A82599DD3500448750 /* HomeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitle.swift; sourceTree = "<group>"; };
 		C36FB2F4254F0AEE006411C9 /* MoBlogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoBlogView.swift; sourceTree = "<group>"; };
 		C36FB41C2572CEC100187C86 /* SourceFollowingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceFollowingButton.swift; sourceTree = "<group>"; };
 		C370C87925856B63002F39E4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 			children = (
 				C3AD4B4A2448D260009C4F87 /* HomeView.swift */,
 				C3A7123F244B1665005BA03F /* HomePost.swift */,
+				C36809A82599DD3500448750 /* HomeTitle.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				C3A7123C244A6DC5005BA03F /* Section.swift in Sources */,
 				C323CBC224430437000626C5 /* ContentView.swift in Sources */,
 				C3AD4B532448D828009C4F87 /* Post.swift in Sources */,
+				C36809A92599DD3500448750 /* HomeTitle.swift in Sources */,
 				C3ED860524EDB97E0023308A /* PostList.swift in Sources */,
 				C3AD4B4B2448D260009C4F87 /* HomeView.swift in Sources */,
 				C323CBBD24430437000626C5 /* SceneDelegate.swift in Sources */,
@@ -593,6 +599,7 @@
 				C3AD4B56244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3596F3924A8D46300269AD7 /* MoBlogRequest.swift in Sources */,
 				C370C88225856DC2002F39E4 /* SearchBar.swift in Sources */,
+				C36809AA2599DD3500448750 /* HomeTitle.swift in Sources */,
 				C301F18E257D051900956E85 /* CoreDataApi.swift in Sources */,
 				C3596F3524A8A3C100269AD7 /* PostRequest.swift in Sources */,
 				C3AD4B4C2448D260009C4F87 /* HomeView.swift in Sources */,
@@ -632,6 +639,7 @@
 				C3AD4B57244A409C009C4F87 /* ExploreView.swift in Sources */,
 				C3596F3A24A8D46300269AD7 /* MoBlogRequest.swift in Sources */,
 				C370C88325856DC2002F39E4 /* SearchBar.swift in Sources */,
+				C36809AB2599DD3500448750 /* HomeTitle.swift in Sources */,
 				C301F18F257D051900956E85 /* CoreDataApi.swift in Sources */,
 				C3596F3624A8A3C100269AD7 /* PostRequest.swift in Sources */,
 				C3AD4B4D2448D260009C4F87 /* HomeView.swift in Sources */,

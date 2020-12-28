@@ -25,6 +25,23 @@ func getFollowingList(viewContext: NSManagedObjectContext) -> [String] {
     return result.filter({ $0.following }).map({ $0.sourceCode! })
 }
 
+func updateFollowingPosts(viewContext: NSManagedObjectContext) -> [Post] {
+    let followingList = getFollowingList(viewContext: viewContext)
+   
+    // Only fetch data if at least one source is being followed.
+    if !followingList.isEmpty {
+        guard let posts = PostRequest(page: 0, sourceCodes: followingList).response?.data else {
+               return []
+           }
+              
+        return posts
+    }
+    
+    else {
+        return []
+    }
+}
+
 func getNotificationsList(viewContext: NSManagedObjectContext) -> [String] {
     let result: [FollowingInfo] = getCoreData(viewContext: viewContext)
     

@@ -16,21 +16,16 @@ struct PostResponse: Decodable {
 
 class PostRequest {
     let page: Int
-    let sourceCode: String?
+    let sourceCodes: [String]?
     let resource: String
     var response: PostResponse?
     
-    init(page: Int, sourceCode: String?) {
+    init(page: Int, sourceCodes: [String]?) {
         self.page = page
-        self.sourceCode = sourceCode
+        self.sourceCodes = sourceCodes
         self.resource = "posts"
-        var params: String
+        let params = "?page=\(page)" + (sourceCodes != nil ? "&source=\(sourceCodes!.joined(separator: ","))" : "")
         
-        if (sourceCode != nil) {
-            params = "?page=\(page)&source=\(sourceCode!)"
-        } else {
-            params = "?page=\(page)"
-        }
         let semaphore = DispatchSemaphore(value: 0)
         let moBlogResuest = MoBlogRequest(resource: self.resource, params: params)
         

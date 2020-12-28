@@ -12,6 +12,8 @@ import CoreData
 struct SourcePresentation: View {
     @ObservedObject var source: Source
     @EnvironmentObject var followingInfo: FollowingInfo
+    @EnvironmentObject var postList: PostList
+    @State var shouldReloadPostList = false
     var viewContext: NSManagedObjectContext
     var dismissFunc: () -> Void
     
@@ -35,6 +37,9 @@ struct SourcePresentation: View {
                                 }
                                 HStack {
                                     Button(action: {
+                                        if shouldReloadPostList {
+                                            postList.posts = updateFollowingPosts(viewContext: viewContext)
+                                        }
                                         dismissFunc()
                                     }, label: {
                                         HStack {
@@ -62,7 +67,7 @@ struct SourcePresentation: View {
             HStack(spacing: 0) {
                 Spacer()
                 
-                SourceFollowingButton(viewContext: viewContext)
+                SourceFollowingButton(shouldReloadPostList: $shouldReloadPostList, viewContext: viewContext)
                 
                 VStack {
                     if followingInfo.following && followingInfo.notification {

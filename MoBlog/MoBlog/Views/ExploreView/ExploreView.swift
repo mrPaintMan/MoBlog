@@ -77,7 +77,7 @@ struct ExploreView: View {
     
     func loadNewPosts() {
         if self.newPosts.isEmpty {
-            guard let posts: [Post] = PostRequest(page: 0, sourceCode: nil).response?.data else {
+            guard let posts: [Post] = PostRequest(page: 0, sourceCodes: nil).response?.data else {
                 self.showInternetAlert = true
                 return
            }

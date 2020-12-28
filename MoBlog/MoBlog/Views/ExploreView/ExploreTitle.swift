@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ExploreTitle: View {
     @EnvironmentObject var sourceList: SourceList
+    @EnvironmentObject var postList: PostList
     @Environment(\.managedObjectContext) var viewContext
     
     var body: some View {
@@ -27,7 +28,7 @@ struct ExploreTitle: View {
             Spacer()
             
             NavigationLink(
-                destination: SearchView(viewContext: viewContext, sourceList: sourceList),
+                destination: SearchView(viewContext: viewContext, sourceList: sourceList).environmentObject(postList),
                 label: {
                     Image(systemName: "magnifyingglass").accentColor(.moBlogRed).font(.title2)
                 })

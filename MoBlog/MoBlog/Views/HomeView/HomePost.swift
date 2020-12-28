@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomePost: View {
     @EnvironmentObject var sourceList: SourceList
+    @EnvironmentObject var postList: PostList
     @Environment(\.managedObjectContext) var viewContext
     var age: String
     @ObservedObject var post: Post
@@ -49,7 +50,7 @@ struct HomePost: View {
                         
                         HStack {
                             NavigationLink(
-                                destination: SourceView(source: getSource(), viewContext: viewContext),
+                                destination: SourceView(source: getSource(), viewContext: viewContext).environmentObject(postList),
                                 label: {
                                     ProfileImage(source: getSource(), width: 50, height: 50)
                                         .padding(5)

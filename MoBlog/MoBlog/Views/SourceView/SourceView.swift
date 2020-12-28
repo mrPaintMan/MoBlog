@@ -114,7 +114,7 @@ struct SourceView: View {
         
         
         DispatchQueue.main.async {
-            guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: self.source.sourceCode).response?.data else {
+            guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCodes: [self.source.sourceCode]).response?.data else {
                 
                 return
             }
@@ -126,7 +126,7 @@ struct SourceView: View {
     func loadMorePosts() -> Void {
         self.pageIndex += 1
         
-        guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCode: self.source.sourceCode).response?.data else {
+        guard let posts: [Post] = PostRequest(page: self.pageIndex, sourceCodes: [self.source.sourceCode]).response?.data else {
             return
         }
         
